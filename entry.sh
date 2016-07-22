@@ -27,23 +27,29 @@ set -e
 # EOF
 # }
 
-# If master list does not exist, create it
-if [ ! -d /var/lib/mailman/lists/mailman ]; then
-    /var/lib/mailman/bin/newlist --quiet --urlhost=$MAILMAN_URLHOST --emailhost=$MAILMAN_EMAILHOST mailman $MAILMAN_ADMINMAIL $MAILMAN_ADMINPASS
-fi
-
 # # Generate all aliases for postfix
 # for LISTDIR in /var/lib/mailman/lists/*; do
 #     LIST=$(basename $LISTDIR)
 #     generate_aliases $LIST
 # done
 
-/usr/lib/mailman/bin/genaliases -q >> /etc/aliases
-newaliases
 
 # Copy default spool from cache
 if [ ! "$(ls -A /var/spool/postfix)" ]; then
-   cp -a /var/spool/postfix.cache/* /var/spool/postfix/
+   cp -a /var/spool/postfix.cache/. /var/spool/postfix/
 fi
+
+if [ ! "$(ls -A /var/spool/postfix)" ]; then
+   cp -a /var/lib/mailman.cache/. /var/lib/mailman/
+fi
+
+# If master list does not exist, create it
+if [ ! -d /var/lib/mailman/lists/mailman ]; then
+    /var/lib/mailman/bin/newlist --quiet --urlhost=$MAILMAN_URLHOST --emailhost=$MAILMAN_EMAILHOST mailman $MAILMAN_ADMINMAIL $MAILMAN_ADMINPASS
+fi
+
+# Init Config
+/usr/lib/mailman/bin/genaliases -q >> /etc/aliases
+newaliases
 
 exec $@
