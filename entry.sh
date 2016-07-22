@@ -39,7 +39,7 @@ if [ ! "$(ls -A /var/spool/postfix)" ]; then
    cp -a /var/spool/postfix.cache/. /var/spool/postfix/
 fi
 
-if [ ! "$(ls -A /var/spool/postfix)" ]; then
+if [ ! "$(ls -A /var/lib/mailman)" ]; then
    cp -a /var/lib/mailman.cache/. /var/lib/mailman/
 fi
 
