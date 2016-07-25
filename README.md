@@ -1,6 +1,7 @@
 # Mailman
 
-Work in progress docker container for mailman.
+All in one docker container for GNU
+[Mailman](http://www.gnu.org/software/mailman/index.html).
 
 ## Building
 
@@ -16,6 +17,10 @@ docker run --rm -ti --name mailman \
   -e MAILMAN_URLHOST=www.example.com \
   -e MAILMAN_EMAILHOST=example.com \
   -e MAILMAN_ADMINMAIL=admin@example.com \
-  -e MAILMAN_ADMINPASS=foo mailman
+  -e MAILMAN_ADMINPASS=foo \
+  mailman
+```
 
-````
+## Status
+
+Complete and working. But not yet sufficiently tested.
