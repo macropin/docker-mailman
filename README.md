@@ -21,6 +21,12 @@ docker run --rm -ti --name mailman \
   mailman
 ```
 
+# Configs
+
+ - `MAILMAN_SSL_CRT`
+ - `MAILMAN_SSL_KEY`
+ - `MAILMAN_SSL_CA`
+
 ## Status
 
 Complete and working. But not yet sufficiently tested.

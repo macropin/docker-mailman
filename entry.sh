@@ -37,11 +37,15 @@ fi
 postconf -e mydestination=${MAILMAN_EMAILHOST}
 postconf -e myhostname=${HOSTNAME}
 
-#postconf -e mailbox_size_limit=20971520
-# Fixme, support TLS
-#smtpd_tls_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem
-#smtpd_tls_key_file=/etc/ssl/private/ssl-cert-snakeoil.key
-#smtpd_use_tls=yes
+# 20MB size limit
+postconf -e mailbox_size_limit=20971520
+
+if [ -n "$MAILMAN_SSL_CRT" ] && [ -n "$MAILMAN_SSL_KEY" ] && [ -n "$MAILMAN_SSL_CA" ]; then
+    postconf -e smtpd_use_tls=yes
+    postconf -e smtpd_tls_cert_file=${MAILMAN_SSL_CRT}
+    postconf -e smtpd_tls_key_file=${MAILMAN_SSL_KEY}
+    postconf -e smtpd_tls_CAfile=${MAILMAN_SSL_CA}
+fi
 
 # Init Postfix Config
 /usr/lib/mailman/bin/genaliases -q >> /etc/aliases
