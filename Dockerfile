@@ -10,7 +10,9 @@ RUN apt-get update && \
     cp -a /var/spool/postfix /var/spool/postfix.cache && \
     # Configure Nginx
     sed -i -e 's@worker_processes 4@worker_processes 1@g' /etc/nginx/nginx.conf && \
-    rm -f /etc/nginx/sites-enabled/default
+    rm -f /etc/nginx/sites-enabled/default && \
+    # Configure Mailman
+    sed -i -e "s@^DEFAULT_URL_PATTERN.*@DEFAULT_URL_PATTERN = \'http://%s/\'@g" /etc/mailman/mm_cfg.py
 
 ADD nginx.conf /etc/nginx/conf.d/
 ADD supervisord.conf /etc/supervisor/supervisord.conf
