@@ -33,7 +33,17 @@ if [ ! -d /var/lib/mailman/lists/mailman ]; then
     /var/lib/mailman/bin/newlist --quiet --urlhost=$MAILMAN_URLHOST --emailhost=$MAILMAN_EMAILHOST mailman $MAILMAN_ADMINMAIL $MAILMAN_ADMINPASS
 fi
 
-# Init Config
+# Fix Postfix settings
+postconf -e mydestination=${MAILMAN_EMAILHOST}
+postconf -e myhostname=${HOSTNAME}
+
+#postconf -e mailbox_size_limit=20971520
+# Fixme, support TLS
+#smtpd_tls_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem
+#smtpd_tls_key_file=/etc/ssl/private/ssl-cert-snakeoil.key
+#smtpd_use_tls=yes
+
+# Init Postfix Config
 /usr/lib/mailman/bin/genaliases -q >> /etc/aliases
 newaliases
 
