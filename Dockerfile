@@ -1,7 +1,7 @@
 FROM debian:jessie
 
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y nginx mailman postfix supervisor fcgiwrap multiwatch busybox-syslogd && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y nginx mailman postfix supervisor fcgiwrap multiwatch busybox-syslogd locales && \
     apt-get -y install vim && \
     rm -rf /var/lib/apt/lists/* && \
     # Configure Nginx
