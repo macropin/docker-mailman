@@ -29,4 +29,4 @@ docker run --rm -ti --name mailman \
 
 ## Status
 
-Complete and working. But not yet sufficiently tested.
+Complete and working in production.
