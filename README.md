@@ -3,13 +3,7 @@
 All in one docker container for GNU
 [Mailman](http://www.gnu.org/software/mailman/index.html).
 
-## Building
-
-```
-docker build -t mailman .
-```
-
-## Running
+## Example Usage
 
 ```
 docker run --rm -ti --name mailman \
@@ -18,14 +12,21 @@ docker run --rm -ti --name mailman \
   -e MAILMAN_EMAILHOST=example.com \
   -e MAILMAN_ADMINMAIL=admin@example.com \
   -e MAILMAN_ADMINPASS=foo \
-  mailman
+  docker.io/macropin/mailman
 ```
 
-# Configs
+## Environment Configs
 
- - `MAILMAN_SSL_CRT`
- - `MAILMAN_SSL_KEY`
- - `MAILMAN_SSL_CA`
+ - `MAILMAN_URLHOST` - Mailman url host eg `www.example.com`
+ - `MAILMAN_EMAILHOST` - Mailman email host eg `example.com`
+ - `MAILMAN_ADMINMAIL` - Mailman administrator email address eg `admin@example.com`
+ - `MAILMAN_ADMINPASS` - Mailman administrator password
+
+SSL options for opportunistic SMTP TLS:
+
+ - `MAILMAN_SSL_CRT` - SSL Certificate (optional)
+ - `MAILMAN_SSL_KEY` - SSL Key (optional)
+ - `MAILMAN_SSL_CA` - SSL CA (optional)
 
 ## Status
 
