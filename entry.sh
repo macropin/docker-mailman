@@ -36,10 +36,6 @@ fi
 # Set mailman admin password
 mmsitepass $MAILMAN_ADMINPASS
 
-# Add virtualhost
-linetoadd="add_virtualhost('$MAILMAN_URLHOST', '$MAILMAN_EMAILHOST')"
-grep -q "$linetoadd" /etc/mailman/mm_cfg.py || echo "$linetoadd" >> /etc/mailman/mm_cfg.py
-
 # Fix Postfix settings
 postconf -e mydestination=${MAILMAN_EMAILHOST}
 postconf -e myhostname=${HOSTNAME}
