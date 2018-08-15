@@ -33,6 +33,9 @@ if [ ! -d /var/lib/mailman/lists/mailman ]; then
     /var/lib/mailman/bin/newlist --quiet --urlhost=$MAILMAN_URLHOST --emailhost=$MAILMAN_EMAILHOST mailman $MAILMAN_ADMINMAIL $MAILMAN_ADMINPASS
 fi
 
+# Set mailman admin password
+mmsitepass $MAILMAN_ADMINPASS
+
 # Fix Postfix settings
 postconf -e mydestination=${MAILMAN_EMAILHOST}
 postconf -e myhostname=${HOSTNAME}
