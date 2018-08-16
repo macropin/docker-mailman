@@ -1,6 +1,6 @@
 # Mailman
 
-All in one docker container for GNU
+All in one Docker image for GNU
 [Mailman](http://www.gnu.org/software/mailman/index.html).
 
 ## Example Usage
@@ -12,7 +12,7 @@ docker run --rm -ti --name mailman \
   -e MAILMAN_EMAILHOST=example.com \
   -e MAILMAN_ADMINMAIL=admin@example.com \
   -e MAILMAN_ADMINPASS=foo \
-  docker.io/macropin/mailman
+  docker.io/macropin/mailman:latest
 ```
 
 ## Environment Configs
